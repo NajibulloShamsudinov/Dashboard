@@ -4,7 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
 import MuiAppBar from "@mui/material/AppBar";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -26,14 +26,23 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
+const navbarTitles = {
+  "/panel": "Dashboard",
+  "/panel/orders": "Orders",
+  "/panel/customers": "Customers",
+  "/panel/reports": "Reports",
+};
 function NavBar(props) {
   const { open, toggleDrawer } = props;
   const navigate = useNavigate();
+  const location = useLocation();
 
   const logout = () => {
     sessionStorage.setItem("isLogged", false);
     navigate("/signIn");
   };
+
+  console.log(location.pathname);
 
   return (
     <AppBar style={{ backgroundColor: "#000" }} position="absolute" open={open}>
@@ -61,7 +70,7 @@ function NavBar(props) {
           noWrap
           sx={{ flexGrow: 1 }}
         >
-          Dashboard
+          {navbarTitles[location.pathname]}
         </Typography>
         <IconButton onClick={logout} color="inherit">
           <LogoutIcon />
