@@ -9,12 +9,13 @@ import SignIn from "./containers/SignIn/SignIn";
 import SignUp from "./containers/SingUp/SignUp";
 import { useEffect, useState } from "react";
 import RequireAuth from "./utils/RequireAuth";
+import "antd/dist/antd.css";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem("isLogged") == "true") {
+    if (sessionStorage.getItem("isLogged") === "true") {
       setCurrentUser(true);
     }
   }, [currentUser]);

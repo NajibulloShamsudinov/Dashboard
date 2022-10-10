@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { message } from "antd";
 import axios from "axios";
 
 export const getCustomers = createAsyncThunk(
@@ -84,6 +85,8 @@ const initialCustomer = {
   firstname: "",
   lastname: "",
   phone: "",
+  gender: "",
+  city: "",
 };
 export const slice = createSlice({
   name: "customers",
@@ -126,6 +129,13 @@ export const slice = createSlice({
     [addCustomers.fulfilled]: (state, action) => {
       state.loading = false;
       state.status = action.payload;
+      message.success({
+        content: `${action.payload.firstname} successfully added!`,
+        className: "custom-class",
+        style: {
+          marginTop: "20vh",
+        },
+      });
       state.addModal = false;
     },
     [addCustomers.rejected]: setError,
@@ -133,6 +143,13 @@ export const slice = createSlice({
     [editCustomers.fulfilled]: (state, action) => {
       state.loading = false;
       state.status = action.payload;
+      message.success({
+        content: `${action.payload.firstname} successfully updated!`,
+        className: "custom-class",
+        style: {
+          marginTop: "20vh",
+        },
+      });
       state.editModal = false;
     },
     [editCustomers.rejected]: setError,
@@ -140,6 +157,13 @@ export const slice = createSlice({
     [deleteCustomers.fulfilled]: (state, action) => {
       state.loading = false;
       state.status = action.payload;
+      message.success({
+        content: `${action.payload.firstname} successfully deleted!`,
+        className: "custom-class",
+        style: {
+          marginTop: "20vh",
+        },
+      });
       state.deleteModal = false;
     },
     [deleteCustomers.rejected]: setError,

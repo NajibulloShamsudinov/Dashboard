@@ -6,7 +6,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button, IconButton, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -40,15 +48,18 @@ function Customers(props) {
   const onSend = (name) => {
     if (name === "add") {
       dispatch(addCustomers());
+      onClose("addModal");
       return;
     }
     if (name === "edit") {
       dispatch(editCustomers());
+      onClose("editModal");
       return;
     }
 
     if (name === "delete") {
       dispatch(deleteCustomers());
+      onClose("deleteModal");
       return;
     }
   };
@@ -77,11 +88,13 @@ function Customers(props) {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Customor_ID</TableCell>
-              <TableCell>CreatAt</TableCell>
-              <TableCell>Firs_Name</TableCell>
-              <TableCell>Last_NAme</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell>CreatedAt</TableCell>
+              <TableCell>Firstname</TableCell>
+              <TableCell>Lastname</TableCell>
               <TableCell>Phone</TableCell>
+              <TableCell>Gender</TableCell>
+              <TableCell>City</TableCell>
               <TableCell>Edit</TableCell>
               <TableCell>Delete</TableCell>
             </TableRow>
@@ -99,6 +112,8 @@ function Customers(props) {
                 <TableCell>{customer.firstname}</TableCell>
                 <TableCell>{customer.lastname}</TableCell>
                 <TableCell>{customer.phone}</TableCell>
+                <TableCell>{customer.gender}</TableCell>
+                <TableCell>{customer.city}</TableCell>
                 <TableCell>
                   <IconButton
                     onClick={() => onOpen("editModal", customer.id)}
@@ -150,6 +165,27 @@ function Customers(props) {
             value={customer.phone}
             onChange={onChange}
           />
+          <FormControl variant="standard">
+            <InputLabel id="demo-simple-select-standard-label">
+              Gender
+            </InputLabel>
+            <Select
+              value={customer.gender}
+              onChange={onChange}
+              label="gender"
+              name="gender"
+            >
+              <MenuItem value="man">male</MenuItem>
+              <MenuItem value="woman">female</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            name="city"
+            label="city"
+            variant="standard"
+            value={customer.city}
+            onChange={onChange}
+          />
         </div>
       </Modal>
       <Modal
@@ -180,6 +216,27 @@ function Customers(props) {
             label="Phone"
             variant="standard"
             value={customer.phone}
+            onChange={onChange}
+          />
+          <FormControl variant="standard">
+            <InputLabel id="demo-simple-select-standard-label">
+              Gender
+            </InputLabel>
+            <Select
+              value={customer.gender}
+              onChange={onChange}
+              label="gender"
+              name="gender"
+            >
+              <MenuItem value="male">male</MenuItem>
+              <MenuItem value="female">female</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            name="city"
+            label="city"
+            variant="standard"
+            value={customer.city}
             onChange={onChange}
           />
         </div>

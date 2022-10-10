@@ -40,15 +40,18 @@ function Orders(props) {
   const onSend = (name) => {
     if (name === "add") {
       dispatch(addOrders());
+      onClose("deleteModal");
       return;
     }
     if (name === "edit") {
       dispatch(editOrders());
+      onClose("deleteModal");
       return;
     }
 
     if (name === "delete") {
       dispatch(deleteOrders());
+      onClose("deleteModal");
       return;
     }
   };
@@ -97,10 +100,10 @@ function Orders(props) {
                   {order.id}
                 </TableCell>
                 <TableCell>{order.createdAt.slice(0, 10)}</TableCell>
-                <TableCell>{order.Customer}</TableCell>
-                <TableCell>{order.Item}</TableCell>
-                <TableCell>{order.Price}</TableCell>
-                <TableCell>{order.Quantity}</TableCell>
+                <TableCell>{order.customer}</TableCell>
+                <TableCell>{order.item}</TableCell>
+                <TableCell>{order.price}</TableCell>
+                <TableCell>{order.quantity}</TableCell>
                 <TableCell>
                   <IconButton
                     onClick={() => onOpen("editModal", order.id)}
@@ -131,32 +134,32 @@ function Orders(props) {
       >
         <div style={{ display: "flex", flexDirection: "column" }}>
           <TextField
-            name="Customer"
+            name="customer"
             label="Customer"
             variant="standard"
-            value={order.Customer}
+            value={order.customer}
             onChange={onChange}
           />
 
           <TextField
-            name="Item"
+            name="item"
             label="Item"
             variant="standard"
-            value={order.Item}
+            value={order.item}
             onChange={onChange}
           />
           <TextField
             name="price"
             label="Price"
             variant="standard"
-            value={order.Price}
+            value={order.price}
             onChange={onChange}
           />
           <TextField
-            name="Quantity"
+            name="quantity"
             label="Quantity"
             variant="standard"
-            value={order.Quantity}
+            value={order.quantity}
             onChange={onChange}
           />
         </div>

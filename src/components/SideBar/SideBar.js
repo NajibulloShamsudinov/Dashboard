@@ -88,14 +88,14 @@ function SideBar(props) {
             <ListItemText primary="Customers" />
           </ListItemButton>
         </Link>
-        <Link className="decoration" to="reports">
+        {/* <Link className="decoration" to="reports">
           <ListItemButton>
             <ListItemIcon>
               <BarChartIcon />
             </ListItemIcon>
             <ListItemText primary="Reports" />
           </ListItemButton>
-        </Link>
+        </Link> */}
       </List>
     </Drawer>
   );

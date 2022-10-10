@@ -39,6 +39,7 @@ export const editOrders = createAsyncThunk(
   async (_, { rejectWithValue, dispatch, getState }) => {
     const order = getState().orders.order;
     const id = getState().orders.id;
+    console.log(order);
     try {
       const { data } = await axios.put(
         `https://6270fe836a36d4d62c1fd38b.mockapi.io/orders/${id}`,
@@ -83,10 +84,10 @@ const setError = (state, action) => {
 };
 
 const initialUser = {
-  Customers: "",
-  Item: "",
-  Price: null,
-  Quantity: null,
+  customer: "",
+  item: "",
+  price: null,
+  quantity: null,
 };
 export const slice = createSlice({
   name: "orders",
